@@ -1,4 +1,4 @@
-package entity;
+package jpa.entity;
 
 import org.springframework.format.annotation.DateTimeFormat;
 

@@ -1,14 +1,9 @@
-package service;
+package jpa.service;
 
-import entity.AccountEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.TransactionDefinition;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
-import repository.AccountRepository;
+import jpa.repository.AccountRepository;
 
 @Service
 public class AccountService {
