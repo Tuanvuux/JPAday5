@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package jpa.configuration;
-
-import jpa.serviceImp.AccountServiceImp;
+package jpa.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
@@ -16,8 +14,6 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import jpa.service.AccountService;
-
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -25,15 +21,17 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "jpa")
-public class JPAConfig {
+public class SpringConfig {
 
     @Bean
     public DataSource dataSource() {
         final DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://127.0.0.1:3307/jpademo?characterEncoding=UTF-8");
+        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+//        dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/jpademo?characterEncoding=UTF-8");
+        // Sử dụng createDatabaseIfNotExist=true để tự động tạo cơ sở dữ liệu nếu chưa tồn tại
+        dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/jpa3?characterEncoding=UTF-8&createDatabaseIfNotExist=true");
         dataSource.setUsername("root");
-        dataSource.setPassword("admin");
+        dataSource.setPassword("12345678");
         return dataSource;
     }
 
@@ -71,22 +69,6 @@ public class JPAConfig {
     }
 
     // Set bean AccountService with platform transaction manager
-    @Bean
-    public AccountService accountService(JpaTransactionManager jpaTransactionManager){
-        AccountService accountService = new AccountService(jpaTransactionManager);
-        return accountService;
-    }
 
-    // Set bean AccountService using Annatation
-    @Bean
-    public AccountService accountService(){
-        AccountService accountService = new AccountService();
-        return accountService;
-    }
-    @Bean
-    public AccountServiceImp accountServiceImp(){
-        AccountServiceImp accountServiceImp = new AccountServiceImp();
-        return accountServiceImp;
-    }
 }
 
