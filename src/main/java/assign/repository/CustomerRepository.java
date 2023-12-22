@@ -1,6 +1,6 @@
 package assign.repository;
 
-import entity.Customer;
+import assign.entity.Customer;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 

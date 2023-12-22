@@ -1,8 +1,9 @@
 package assign.main;
 
 import assign.config.Config;
+import assign.entity.Customer;
 import assign.repository.CustomerRepository;
-import entity.Customer;
+import assign.entity.Customer;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.data.jpa.repository.Query;
