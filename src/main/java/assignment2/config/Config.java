@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package assign.config;
+package assignment2.config;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
@@ -20,7 +16,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = "assign.repository") // Chỉ định package chứa repository
+@EnableJpaRepositories(basePackages = "assignment2")
 public class Config {
 
     @Bean
@@ -29,7 +25,7 @@ public class Config {
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
 //        dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/jpademo?characterEncoding=UTF-8");
         // Sử dụng createDatabaseIfNotExist=true để tự động tạo cơ sở dữ liệu nếu chưa tồn tại
-        dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/CustomerDB?characterEncoding=UTF-8&createDatabaseIfNotExist=true");
+        dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/jpa3?characterEncoding=UTF-8&createDatabaseIfNotExist=true");
         dataSource.setUsername("root");
         dataSource.setPassword("12345678");
         return dataSource;
@@ -39,7 +35,7 @@ public class Config {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         final LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource());
-        entityManagerFactoryBean.setPackagesToScan("assign"); // Chỉ định package chứa entity Customer
+        entityManagerFactoryBean.setPackagesToScan("assignment2");
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         entityManagerFactoryBean.setJpaProperties(additionalProperties());
 
