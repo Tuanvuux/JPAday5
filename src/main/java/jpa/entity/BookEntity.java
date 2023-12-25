@@ -20,7 +20,8 @@ public class BookEntity {
     @JoinColumn(name = "categoryId")
     private CategoryEntity category;
 
-    @OneToOne(mappedBy = "book", cascade = CascadeType.ALL)
+    @OneToOne( cascade = {CascadeType.ALL})
+    @PrimaryKeyJoinColumn
     private BookDetailsEntity bookDetails;
 
     public BookEntity() {

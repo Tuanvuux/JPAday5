@@ -20,50 +20,30 @@ public class Main {
     public static void main(String[] args) {
         createNewBookEntryWithNewCategory();
         createNewBookEntry();
-        findByAuthor("Roger");
-        findByNameAndAuthor("Java A-Z", "Roger");
-        findByNameOrAuthor("Java A-Z", "Roger");
-        findByPriceLessThan(80);
-        findByBookDetailsIsbn("ISIBF1219321");
-        findByNameContaining("Nu");
-        findAllBooks(); // Thêm phương thức này để lấy tất cả sách
+//            findAll();
+//            findByAuthor("Roger");
+//            findByNameAndAuthor("Java A-Z", "Roger");
+//            findByNameOrAuthor("Java A-Z", "Roger");
+//            findByPriceLessThan(80);
+//            findByBookDetailsIsbn("ISIBF1219321");
+//            findByNameContaining("Nua");
+//            getBookNameStartWith("J");
+        getBookPriceGreaterThan(3);
+
     }
 
-    public static void findByAuthor(String author) {
-        List<BookEntity> bookEntityList = bookRepository.findByAuthor(author);
-        displayBooks(bookEntityList, "Author", author);
+    public static void findAll(){
+        List<BookEntity> bookEntityList=bookRepository.findAll();
+
+        for (BookEntity C: bookEntityList){
+            System.out.println(C.toString());
+        }
     }
 
-    public static void findByNameAndAuthor(String name, String author) {
-        List<BookEntity> bookEntityList = bookRepository.findByNameAndAuthor(name, author);
-        displayBooks(bookEntityList, "Name and Author", name + " - " + author);
-    }
-
-    public static void findByNameOrAuthor(String name, String author) {
-        List<BookEntity> bookEntityList = bookRepository.findByNameOrAuthor(name, author);
-        displayBooks(bookEntityList, "Name or Author", name + " - " + author);
-    }
-
-    public static void findByPriceLessThan(int price) {
-        List<BookEntity> bookEntityList = bookRepository.findByBookDetailsPriceLessThan(price);
-        displayBooks(bookEntityList, "Price less than", String.valueOf(price));
-    }
-
-    public static void findByNameContaining(String name) {
-        List<BookEntity> bookEntityList = bookRepository.findByNameContaining(name);
-        displayBooks(bookEntityList, "Containing name", name);
-    }
-
-    public static void findAllBooks() {
-        List<BookEntity> bookEntityList = bookRepository.findAll();
-        displayBooks(bookEntityList, "All books", "");
-    }
-
-    public static void findByBookDetailsIsbn(String isbn) {
-        BookEntity bookEntity = bookRepository.findByBookDetailsIsbn(isbn);
-        if (bookEntity != null) {
-            System.out.println("\nFind book which isbn = " + isbn);
-            System.out.println(bookEntity.toString());
+    public static void findByAuthor(String author){
+        List<BookEntity> bookEntityList=bookRepository.findByAuthor(author);
+        for (BookEntity C: bookEntityList){
+            System.out.println(C.toString());
         }
     }
 
@@ -87,14 +67,61 @@ public class Main {
         bookRepository.save(bookEntity);
     }
 
-    private static void displayBooks(List<BookEntity> bookEntityList, String criteria, String value) {
-        if (bookEntityList != null) {
-            System.out.println("\nFind " + bookEntityList.size() + " books by " + criteria + ": " + value);
-            for (BookEntity bookEntity : bookEntityList) {
-                System.out.println(bookEntity.toString());
-            }
+
+    public static void findByNameAndAuthor(String name,String author){
+        List<BookEntity> bookEntityList=bookRepository.findByNameAndAuthor(author, name);
+        for (BookEntity C: bookEntityList){
+            System.out.println(C.toString());
         }
     }
+
+    public static void findByNameOrAuthor(String name,String author){
+        List<BookEntity> bookEntityList=bookRepository.findByNameOrAuthor(author, name);
+        for (BookEntity C: bookEntityList){
+            System.out.println(C.toString());
+        }
+    }
+
+    public static void findByPriceLessThan(int price){
+        List<BookEntity> bookEntityList=bookRepository.findByBookDetailsPriceLessThan(price);
+        for (BookEntity C: bookEntityList){
+            System.out.println(C.toString());
+        }
+    }
+
+    public static void findByNameContaining(String Name){
+        List<BookEntity> bookEntityList=bookRepository.findByNameContaining(Name);
+        for (BookEntity C: bookEntityList){
+            System.out.println(C.toString());
+        }
+    }
+
+
+
+
+
+    public static void findByBookDetailsIsbn(String Isbn){
+        List<BookEntity> bookEntityList=bookRepository.findByBookDetailsIsbn(Isbn);
+        for (BookEntity C: bookEntityList){
+            System.out.println(C.toString());
+        }
+    }
+
+    public static void getBookNameStartWith(String name){
+        List<BookEntity> bookEntityList=bookRepository.getBookNameStartWith(name);
+        for (BookEntity C: bookEntityList){
+            System.out.println(C.toString());
+        }
+    }
+
+    public static void getBookPriceGreaterThan(Integer a){
+        List<BookEntity> bookEntityList=bookRepository.getBookPriceGreaterThan(a);
+        for (BookEntity C: bookEntityList){
+            System.out.println(C.toString());
+        }
+    }
+
+
 
     private static CategoryEntity createNewCategory() {
         CategoryEntity categoryEntity = new CategoryEntity();

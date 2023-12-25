@@ -23,8 +23,7 @@ public class BookDetailsEntity {
     @Column(name = "publishDate")
     private LocalDate publishDate;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "book_id") // Thêm tên cột tham chiếu đến book
+    @OneToOne(mappedBy = "bookDetails")
     private BookEntity book;
 
     public BookDetailsEntity(){
